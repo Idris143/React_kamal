@@ -55,7 +55,7 @@ this.setDeleteHandler = this.setDeleteHandler.bind(this);
             })
           }
         </div>
-        <button onClick = {this.setStateHandler}>SET STATE</button>
+        <button onClick = {this.setStateHandler}>Add Movie</button>
 
       </div>
     );
