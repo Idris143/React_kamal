@@ -17,10 +17,10 @@ class App extends React.Component {
 
   UserList() {
 
-    fetch('https://theimdbapi.org/api/find/person?name=Kamal+Haasan').then(response => {
+    fetch('http://www.theimdbapi.org/api/person?person_id=nm0352032').then(response => {
       return response.json();
     }).then(data => {
-      const posts = data[0].filmography.soundtrack;
+      const posts = data.filmography.soundtrack;
       this.setState({posts});
     });
 
