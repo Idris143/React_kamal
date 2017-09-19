@@ -17,7 +17,7 @@ class App extends React.Component {
 
   UserList() {
 
-    fetch('http://www.theimdbapi.org/api/person?person_id=nm0352032').then(response => {
+      fetch('http://www.theimdbapi.org/api/person?person_id=nm0352032').then(response => {
       return response.json();
     }).then(data => {
       const posts = data.filmography.soundtrack;
@@ -45,7 +45,13 @@ class Content extends React.Component {
   render() {
     return (
       <div>
-        <div>{this.props.item.title}</div>
+      <table>
+<tr>
+<td>{this.props.item.title}</td>
+<td>{this.props.item.type}</td>
+</tr>
+      </table>
+        
       </div>
     );
   }
