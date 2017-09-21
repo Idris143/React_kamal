@@ -30,10 +30,13 @@ this.setDeleteHandler = this.setDeleteHandler.bind(this);
       console.log(myArray)
       this.setState({posts: myArray})
    };
-    setDeleteHandler() {
- 	alert("idris")
-
-   };
+  setDeleteHandler(index) {
+    return () => {
+      let posts = [...this.state.posts];
+      posts.splice(index,1);
+      this.setState({posts});
+    }
+};
   UserList() {
 	alert(1)
       fetch('http://www.theimdbapi.org/api/person?person_id=nm0352032').then(response => {
@@ -51,11 +54,11 @@ this.setDeleteHandler = this.setDeleteHandler.bind(this);
         <div>
           {
             this.state.posts.map((item, i) => {
-              return <Content item={item} key={i}/> 
+              return <Content item={item} key={i} deleteHandler={this.setDeleteHandler(i)} /> 
             })
           }
         </div>
-        <button onClick = {this.setStateHandler}>Add Movie</button>
+        <button onClick = {this.setStateHandler}>Add Movie Name</button>
 
       </div>
     );
@@ -72,7 +75,7 @@ class Content extends React.Component {
 <td>{this.props.item.title}</td>
 <td>{this.props.item.type}</td>
 <td>{this.props.item.type}</td>
-<td><button onClick = {this.setDeleteHandler}>Delete</button></td>
+<td><button onClick = {this.props.deleteHandler}>Delete</button></td>
 
 
 </tr>
