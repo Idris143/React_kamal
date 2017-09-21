@@ -37,6 +37,23 @@ this.setDeleteHandler = this.setDeleteHandler.bind(this);
       this.setState({posts});
     }
 };
+
+  setUpdateHandler(index) {
+    return () => {
+      alert(index)
+      let posts = [...this.state.posts];
+      posts[index]= {
+        "url": "http://www.imdb.com/title/tt4937812/", 
+        "title": "idris movie", 
+        "imdb_id": "tt4937812", 
+        "type": "Film", 
+        "year": "2015"
+      };
+      this.setState({posts});
+    }
+};
+
+
   UserList() {
 	alert(1)
       fetch('http://www.theimdbapi.org/api/person?person_id=nm0352032').then(response => {
@@ -54,7 +71,7 @@ this.setDeleteHandler = this.setDeleteHandler.bind(this);
         <div>
           {
             this.state.posts.map((item, i) => {
-              return <Content item={item} key={i} deleteHandler={this.setDeleteHandler(i)} /> 
+              return <Content item={item} key={i} deleteHandler={this.setDeleteHandler(i)} updateHandler={this.setUpdateHandler(i)}/> 
             })
           }
         </div>
@@ -76,6 +93,7 @@ class Content extends React.Component {
 <td>{this.props.item.type}</td>
 <td>{this.props.item.type}</td>
 <td><button onClick = {this.props.deleteHandler}>Delete</button></td>
+<td><button onClick = {this.props.updateHandler}>Update</button></td>
 
 
 </tr>
